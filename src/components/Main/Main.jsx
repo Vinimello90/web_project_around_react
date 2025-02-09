@@ -25,7 +25,7 @@ const cards = [
 ];
 
 export default function Main() {
-  const [popup, setPopup] = useState(null);
+  const [popup, setPopup] = useState("");
 
   const editAvatarPopup = {
     title: "Alterar a foto do perfil",
@@ -37,12 +37,14 @@ export default function Main() {
   };
   const newCardPopup = { title: "Novo local", children: <NewCard /> };
 
-  function handleOpenPopup(popup) {
-    setPopup(popup);
+  function handleOpenPopup(popup2) {
+    setPopup(popup2);
+    console.log(popup2);
   }
 
   function handleClosePopup() {
-    setPopup(null);
+    setPopup("");
+    console.log(popup === true);
   }
 
   return (
