@@ -1,0 +1,28 @@
+.input {
+  box-sizing: border-box;
+  height: 27.26px;
+  font-size: 14px;
+  line-height: 1.21;
+  border: none;
+  padding-bottom: 13.34px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.input::placeholder {
+  color: rgba(0, 0, 0, 0.2);
+}
+
+.input__popup_type_error {
+  border-bottom: 1px solid #ff0000;
+}
+
+@media screen and (max-width: 590px) {
+  .input {
+    padding: 9px;
+    height: 26px;
+  }
+
+  .input__popup-error {
+    font-size: 10px;
+  }
+}
