@@ -69,8 +69,6 @@ No `React` o código do site foi reimplatado no formato `JSX` separados em compo
 <p align="center"><img src="./src/images/popup_image.png" alt="" width="100%"></p>
 <br>
 
-#### Para ver o projeto em execução clique <a href="https://vinimello90.github.io/web_project_around" target="_blank">aqui</a>.
-
 ## Planos de melhoria do projeto
 
 - Adicionar função para adicionar os cards e usar a API para persistir os dados.
