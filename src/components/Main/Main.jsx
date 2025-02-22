@@ -37,7 +37,15 @@ export default function Main() {
     setPopup("");
   }
 
-  function handleCardLike(card) {}
+  function handleCardLike(card) {
+    api.editLikeStatus(card.isLiked, card._id).then((newCard) => {
+      setCards((state) =>
+        state.map((currentCard) =>
+          currentCard._id === newCard._id ? newCard : currentCard
+        )
+      );
+    });
+  }
 
   return (
     <main className="main">
@@ -81,6 +89,7 @@ export default function Main() {
               key={card._id}
               card={card}
               handleOpenPopup={handleOpenPopup}
+              handleCardLike={handleCardLike}
             />
           ))}
         </ul>
