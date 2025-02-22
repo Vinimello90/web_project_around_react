@@ -1,17 +1,22 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { api } from "../../utils/Api";
 import Popup from "./components/Popup/Popup";
 import NewCard from "./components/Popup/components/NewCard/NewCard";
 import EditProfile from "./components/Popup/components/EditProfile/EditProfile";
 import EditAvatar from "./components/Popup/components/EditAvatar/EditAvatar";
 import Card from "./components/Card/Card";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 export default function Main() {
   const [popup, setPopup] = useState("");
   const [cards, setCards] = useState([]);
+  const currentUserInfo = useContext(CurrentUserContext);
 
   useEffect(() => {
-    api.getInitialCards().then((cards) => setCards(cards));
+    api.getInitialCards().then((cards) => {
+      console.log(cards[0].isLiked);
+      return setCards(cards);
+    });
   }, []);
 
   const editAvatarPopup = {
@@ -20,7 +25,7 @@ export default function Main() {
   };
   const editProfilePopup = {
     title: "Editar perfil",
-    children: <EditProfile name="Jacques Cousteau" job="Explorador" />,
+    children: <EditProfile userInfo={currentUserInfo} />,
   };
   const newCardPopup = { title: "Novo local", children: <NewCard /> };
 
@@ -32,12 +37,14 @@ export default function Main() {
     setPopup("");
   }
 
+  function handleCardLike(card) {}
+
   return (
     <main className="main">
       <section className="profile">
         <div className="profile__avatar-container">
           <img
-            src="https://practicum-content.s3.us-west-1.amazonaws.com/frontend-developer/common/avatar.jpg"
+            src={currentUserInfo.avatar}
             alt="avatar"
             className="profile__avatar"
           />
@@ -50,7 +57,7 @@ export default function Main() {
         </div>
         <div className="profile__info">
           <div className="profile__name-button-container">
-            <h1 className="profile__name">Jacques Cousteau</h1>
+            <h1 className="profile__name">{currentUserInfo.name}</h1>
             <button
               type="button"
               aria-label="Edit profile"
@@ -58,7 +65,7 @@ export default function Main() {
               onClick={() => handleOpenPopup(editProfilePopup)}
             ></button>
           </div>
-          <p className="profile__job">Explorador</p>
+          <p className="profile__job">{currentUserInfo.about}</p>
         </div>
         <button
           type="button"

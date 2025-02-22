@@ -1,5 +1,5 @@
 export default function EditProfile(props) {
-  const { name, job } = props;
+  const { name, about: job } = props.userInfo;
   return (
     <form className="popup__form" name="profile" noValidate>
       <fieldset className="popup__fieldset">

@@ -35,6 +35,7 @@
   width: 120px;
   border-radius: 50%;
   object-fit: cover;
+  color: transparent;
 }
 
 .profile__info {
