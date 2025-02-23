@@ -13,6 +13,8 @@ export default function App() {
     api.getUserInfo().then((data) => setCurrentUser(data));
   }, []);
 
+  function handleUpdateUser() {}
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">

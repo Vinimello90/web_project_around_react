@@ -1,5 +1,19 @@
-export default function EditProfile(props) {
-  const { name, about: job } = props.userInfo;
+import { useContext, useState } from "react";
+import { CurrentUserContext } from "../../../../../../contexts/CurrentUserContext";
+
+export default function EditProfile() {
+  const currentUser = useContext(CurrentUserContext);
+  const [name, setName] = useState(currentUser.name);
+  const [description, setDescription] = useState(currentUser.about);
+
+  function handleNameChange(evt) {
+    setName(evt.target.value);
+  }
+
+  function handleDescriptionChange(evt) {
+    setDescription(evt.target.value);
+  }
+
   return (
     <form className="popup__form" name="profile" noValidate>
       <fieldset className="popup__fieldset">
@@ -13,6 +27,8 @@ export default function EditProfile(props) {
             minLength="2"
             maxLength="40"
             defaultValue={name}
+            value={name}
+            onChange={handleNameChange}
             required
           />
           <span className="popup__error popup__error_name"></span>
@@ -26,7 +42,9 @@ export default function EditProfile(props) {
             id="error_job"
             minLength="2"
             maxLength="200"
-            defaultValue={job}
+            defaultValue={description}
+            value={description}
+            onChange={handleDescriptionChange}
             required
           />
           <span className="popup__error popup__error_job"> </span>

@@ -14,7 +14,6 @@ export default function Main() {
 
   useEffect(() => {
     api.getInitialCards().then((cards) => {
-      console.log(cards[0].isLiked);
       return setCards(cards);
     });
   }, []);
@@ -35,6 +34,14 @@ export default function Main() {
 
   function handleClosePopup() {
     setPopup("");
+  }
+
+  function handleCardDelete(id) {
+    api.deleteCard(id).then(() => {
+      setCards((state) =>
+        state.filter((currentCard) => id !== currentCard._id)
+      );
+    });
   }
 
   function handleCardLike(card) {
@@ -90,6 +97,7 @@ export default function Main() {
               card={card}
               handleOpenPopup={handleOpenPopup}
               handleCardLike={handleCardLike}
+              onCardDelete={handleCardDelete}
             />
           ))}
         </ul>
