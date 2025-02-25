@@ -3,7 +3,7 @@ import RemoveCard from "../Popup/components/RemoveCard/RemoveCard";
 
 export default function Card(props) {
   const { name, link, isLiked, _id: id } = props.card;
-  const { handleOpenPopup, handleCardLike, onCardDelete } = props;
+  const { handleOpenPopupClick, handleCardLike, onCardDelete } = props;
   const imagePopup = {
     children: <ImagePopup name={name} link={link} />,
   };
@@ -22,7 +22,7 @@ export default function Card(props) {
         src={link}
         alt={name}
         className="card__image"
-        onClick={() => handleOpenPopup(imagePopup)}
+        onClick={() => handleOpenPopupClick(imagePopup)}
       />
       <button
         type="button"

@@ -1,14 +1,32 @@
+import { useContext, useRef, useState } from "react";
+import { CurrentUserContext } from "../../../../../../contexts/CurrentUserContext";
+
 export default function EditAvatar() {
+  const { currentUserInfo, onUpdateAvatar } = useContext(CurrentUserContext);
+  const urlInputRef = useRef();
+
+  function handleInput(evt) {
+    evt.preventDefault();
+    onUpdateAvatar({ avatar: urlInputRef.current.value });
+  }
+
   return (
-    <form className="popup__form" name="avatar" noValidate>
+    <form
+      onSubmit={handleInput}
+      className="popup__form"
+      name="avatar"
+      noValidate
+    >
       <fieldset className="popup__fieldset">
         <label className="popup__form-field">
           <input
+            ref={urlInputRef}
             type="url"
             className="input input_popup-avatar"
             placeholder="Link de imagem"
             name="link"
             id="error_avatar"
+            defaultValue={currentUserInfo.avatar}
             required
           />
           <span className="popup__error popup__error_avatar"> </span>

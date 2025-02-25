@@ -7,10 +7,10 @@ import EditAvatar from "./components/Popup/components/EditAvatar/EditAvatar";
 import Card from "./components/Card/Card";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
-export default function Main() {
-  const [popup, setPopup] = useState("");
+export default function Main(props) {
   const [cards, setCards] = useState([]);
-  const currentUserInfo = useContext(CurrentUserContext);
+  const { currentUserInfo, handleUpdateUser } = useContext(CurrentUserContext);
+  const { onOpenPopup, onClosePopup, popup } = props;
 
   useEffect(() => {
     api.getInitialCards().then((cards) => {
@@ -28,12 +28,8 @@ export default function Main() {
   };
   const newCardPopup = { title: "Novo local", children: <NewCard /> };
 
-  function handleOpenPopup(popup2) {
-    setPopup(popup2);
-  }
-
-  function handleClosePopup() {
-    setPopup("");
+  function handleOpenPopupClick(popup) {
+    onOpenPopup(popup);
   }
 
   function handleCardDelete(id) {
@@ -67,7 +63,7 @@ export default function Main() {
             type="button"
             aria-label="Edit avatar"
             className="profile__avatar-button"
-            onClick={() => handleOpenPopup(editAvatarPopup)}
+            onClick={() => handleOpenPopupClick(editAvatarPopup)}
           ></button>
         </div>
         <div className="profile__info">
@@ -77,7 +73,7 @@ export default function Main() {
               type="button"
               aria-label="Edit profile"
               className="button button_edit"
-              onClick={() => handleOpenPopup(editProfilePopup)}
+              onClick={() => handleOpenPopupClick(editProfilePopup)}
             ></button>
           </div>
           <p className="profile__job">{currentUserInfo.about}</p>
@@ -86,7 +82,7 @@ export default function Main() {
           type="button"
           aria-label="Add card"
           className="button button_add"
-          onClick={() => handleOpenPopup(newCardPopup)}
+          onClick={() => handleOpenPopupClick(newCardPopup)}
         ></button>
       </section>
       <section className="gallery">
@@ -95,7 +91,7 @@ export default function Main() {
             <Card
               key={card._id}
               card={card}
-              handleOpenPopup={handleOpenPopup}
+              handleOpenPopupClick={handleOpenPopupClick}
               handleCardLike={handleCardLike}
               onCardDelete={handleCardDelete}
             />
@@ -103,7 +99,7 @@ export default function Main() {
         </ul>
       </section>
       {popup && (
-        <Popup onClose={handleClosePopup} title={popup.title}>
+        <Popup onClose={onClosePopup} title={popup.title}>
           {popup.children}
         </Popup>
       )}

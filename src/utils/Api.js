@@ -16,9 +16,7 @@ class Api {
       headers: {
         authorization: this._headers.authorization,
       },
-    })
-      .then(this._checkResponse)
-      .catch((err) => console.log(err));
+    }).then(this._checkResponse);
   }
 
   // Método público addNewCard() é responsável por enviar a solicitação dos dados do novo cartão adicionado utilizando e retornando o método fetch com o método de solicitação "POST"
@@ -27,9 +25,7 @@ class Api {
       method: "POST",
       headers: this._headers,
       body: JSON.stringify(data),
-    })
-      .then(this._checkResponse)
-      .catch((err) => console.log(err));
+    }).then(this._checkResponse);
   }
 
   // Método público editLikeStatus() é responsável por enviar a solicitação para alterar o status do like utilizando e retornando o método fetch com os métodos de solicitações "PUT"
@@ -40,9 +36,7 @@ class Api {
       headers: {
         authorization: this._headers.authorization,
       },
-    })
-      .then(this._checkResponse)
-      .catch((err) => console.log(err));
+    }).then(this._checkResponse);
   }
 
   // Método público deleteCard() é responsável por enviar a solicitação para remover o card através do id do cartão utilizando e retornando o método fetch com o método de solicitação "DELETE".
@@ -52,9 +46,7 @@ class Api {
       headers: {
         authorization: this._headers.authorization,
       },
-    })
-      .then(this._checkResponse)
-      .catch((err) => console.log(err));
+    }).then(this._checkResponse);
   }
 
   // Método público getUserInfo() é responsável por enviar a solicitação das informações do perfil do usuário utilizando e retornando o método fetch com o método de solicitação "GET"
@@ -63,32 +55,26 @@ class Api {
       headers: {
         authorization: this._headers.authorization,
       },
-    })
-      .then(this._checkResponse)
-      .catch((err) => console.log(err));
+    }).then(this._checkResponse);
   }
 
   // Método público editUserAvatar() é responsável  por enviar a solicitação da alteração do link da imagem do avatar do perfil do usuário utilizando e retornando o método fetch com o método
   // de solicitação "PATCH"
-  updateUserAvatar(data) {
+  updateUserAvatar(user) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: "PATCH",
       headers: this._headers,
-      body: JSON.stringify(data),
-    })
-      .then(this._checkResponse)
-      .catch((err) => console.log(err));
+      body: JSON.stringify(user),
+    }).then(this._checkResponse);
   }
 
   // Método público editUserInfo() é responsável  por enviar a solicitação da alteração das informações do perfil do usuário utilizando e retornando o método fetch com o método de solicitação "PATCH"
-  updateUserInfo(data) {
+  updateUserInfo(userInfo) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
       headers: this._headers,
-      body: JSON.stringify(data),
-    })
-      .then(this._checkResponse)
-      .catch((err) => console.log(err));
+      body: JSON.stringify(userInfo),
+    }).then(this._checkResponse);
   }
 }
 
