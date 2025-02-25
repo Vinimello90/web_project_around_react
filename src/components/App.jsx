@@ -3,7 +3,7 @@ import Header from "./Header/Header";
 import Main from "./Main/Main";
 import Footer from "./Footer/Footer";
 import { api } from "../utils/Api";
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 export default function App() {
@@ -68,6 +68,7 @@ export default function App() {
       setCards((state) =>
         state.filter((currentCard) => currentCard._id !== id)
       );
+      handleClosePopup();
     } catch (error) {
       console.error(error);
     }

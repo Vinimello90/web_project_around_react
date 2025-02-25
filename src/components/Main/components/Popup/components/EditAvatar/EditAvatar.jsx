@@ -5,14 +5,14 @@ export default function EditAvatar() {
   const { currentUserInfo, onUpdateAvatar } = useContext(CurrentUserContext);
   const urlInputRef = useRef();
 
-  function handleInput(evt) {
+  function handleSubmit(evt) {
     evt.preventDefault();
     onUpdateAvatar({ avatar: urlInputRef.current.value });
   }
 
   return (
     <form
-      onSubmit={handleInput}
+      onSubmit={handleSubmit}
       className="popup__form"
       name="avatar"
       noValidate
