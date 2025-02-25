@@ -12,12 +12,16 @@ export default function App() {
   const [cards, setCards] = useState([]);
 
   useEffect(() => {
-    api.getUserInfo().then((data) => {
-      setCurrentUser(data);
-    });
-    api.getInitialCards().then((cards) => {
-      return setCards(cards);
-    });
+    (async () => {
+      try {
+        const userInfo = await api.getUserInfo();
+        setCurrentUser(userInfo);
+        const initialCards = await api.getInitialCards();
+        setCards(initialCards);
+      } catch (error) {
+        console.error(error);
+      }
+    })();
   }, []);
 
   function handleOpenPopup(popup) {
@@ -58,22 +62,28 @@ export default function App() {
     }
   }
 
-  function handleCardDelete(id) {
-    api.deleteCard(id).then(() => {
+  async function handleCardDelete(id) {
+    try {
+      await api.deleteCard(id);
       setCards((state) =>
-        state.filter((currentCard) => id !== currentCard._id)
+        state.filter((currentCard) => currentCard._id !== id)
       );
-    });
+    } catch (error) {
+      console.error(error);
+    }
   }
 
-  function handleCardLike(card) {
-    api.editLikeStatus(card.isLiked, card._id).then((newCard) => {
+  async function handleCardLike(card) {
+    try {
+      const newCard = await api.editLikeStatus(card.isLiked, card._id);
       setCards((state) =>
         state.map((currentCard) =>
           currentCard._id === newCard._id ? newCard : currentCard
         )
       );
-    });
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   return (
