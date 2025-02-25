@@ -8,15 +8,16 @@ import Card from "./components/Card/Card";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 export default function Main(props) {
-  const [cards, setCards] = useState([]);
   const { currentUserInfo, handleUpdateUser } = useContext(CurrentUserContext);
-  const { onOpenPopup, onClosePopup, popup } = props;
-
-  useEffect(() => {
-    api.getInitialCards().then((cards) => {
-      return setCards(cards);
-    });
-  }, []);
+  const {
+    onOpenPopup,
+    onClosePopup,
+    popup,
+    onAddPlaceSubmit,
+    onCardLike,
+    onCardDelete,
+    cards,
+  } = props;
 
   const editAvatarPopup = {
     title: "Alterar a foto do perfil",
@@ -26,28 +27,13 @@ export default function Main(props) {
     title: "Editar perfil",
     children: <EditProfile userInfo={currentUserInfo} />,
   };
-  const newCardPopup = { title: "Novo local", children: <NewCard /> };
+  const newCardPopup = {
+    title: "Novo local",
+    children: <NewCard onAddPlaceSubmit={onAddPlaceSubmit} />,
+  };
 
   function handleOpenPopupClick(popup) {
     onOpenPopup(popup);
-  }
-
-  function handleCardDelete(id) {
-    api.deleteCard(id).then(() => {
-      setCards((state) =>
-        state.filter((currentCard) => id !== currentCard._id)
-      );
-    });
-  }
-
-  function handleCardLike(card) {
-    api.editLikeStatus(card.isLiked, card._id).then((newCard) => {
-      setCards((state) =>
-        state.map((currentCard) =>
-          currentCard._id === newCard._id ? newCard : currentCard
-        )
-      );
-    });
   }
 
   return (
@@ -92,8 +78,8 @@ export default function Main(props) {
               key={card._id}
               card={card}
               handleOpenPopupClick={handleOpenPopupClick}
-              handleCardLike={handleCardLike}
-              onCardDelete={handleCardDelete}
+              onCardLike={onCardLike}
+              onCardDelete={onCardDelete}
             />
           ))}
         </ul>

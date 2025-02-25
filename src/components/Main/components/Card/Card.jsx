@@ -3,13 +3,17 @@ import RemoveCard from "../Popup/components/RemoveCard/RemoveCard";
 
 export default function Card(props) {
   const { name, link, isLiked, _id: id } = props.card;
-  const { handleOpenPopupClick, handleCardLike, onCardDelete } = props;
+  const { handleOpenPopupClick, onCardLike, onCardDelete } = props;
   const imagePopup = {
     children: <ImagePopup name={name} link={link} />,
   };
 
   function handleDeleteClick() {
     onCardDelete(id);
+  }
+
+  function handleLikeClick() {
+    onCardLike(props.card);
   }
 
   const removeCard = {
@@ -38,7 +42,7 @@ export default function Card(props) {
           className={`button button_like ${
             isLiked ? "button_like_activate" : ""
           }`}
-          onClick={() => handleCardLike(props.card)}
+          onClick={handleLikeClick}
         ></button>
       </div>
     </li>

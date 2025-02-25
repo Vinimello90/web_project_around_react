@@ -9,10 +9,14 @@ import { CurrentUserContext } from "../contexts/CurrentUserContext";
 export default function App() {
   const [currentUser, setCurrentUser] = useState("");
   const [popup, setPopup] = useState("");
+  const [cards, setCards] = useState([]);
 
   useEffect(() => {
     api.getUserInfo().then((data) => {
       setCurrentUser(data);
+    });
+    api.getInitialCards().then((cards) => {
+      return setCards(cards);
     });
   }, []);
 
@@ -44,6 +48,34 @@ export default function App() {
     }
   }
 
+  async function handleAddPlaceSubmit(cardInfo) {
+    try {
+      const newCard = await api.addNewCard(cardInfo);
+      setCards([newCard, ...cards]);
+      handleClosePopup();
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  function handleCardDelete(id) {
+    api.deleteCard(id).then(() => {
+      setCards((state) =>
+        state.filter((currentCard) => id !== currentCard._id)
+      );
+    });
+  }
+
+  function handleCardLike(card) {
+    api.editLikeStatus(card.isLiked, card._id).then((newCard) => {
+      setCards((state) =>
+        state.map((currentCard) =>
+          currentCard._id === newCard._id ? newCard : currentCard
+        )
+      );
+    });
+  }
+
   return (
     <CurrentUserContext.Provider
       value={{
@@ -58,6 +90,10 @@ export default function App() {
           onOpenPopup={handleOpenPopup}
           onClosePopup={handleClosePopup}
           popup={popup}
+          onCardLike={handleCardLike}
+          onCardDelete={handleCardDelete}
+          onAddPlaceSubmit={handleAddPlaceSubmit}
+          cards={cards}
         />
         <Footer />
       </div>
