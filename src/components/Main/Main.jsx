@@ -5,6 +5,7 @@ import EditProfile from "./components/Popup/components/EditProfile/EditProfile";
 import EditAvatar from "./components/Popup/components/EditAvatar/EditAvatar";
 import Card from "./components/Card/Card";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import NoCards from "./NoCards/NoCards";
 
 export default function Main(props) {
   const { currentUserInfo } = useContext(CurrentUserContext);
@@ -79,6 +80,7 @@ export default function Main(props) {
               />
             );
           })}
+          {cards.length === 0 && <NoCards />}
         </ul>
       </section>
       {popup && (
