@@ -8,11 +8,12 @@ export default function EditProfile() {
   const [name, setName] = useState(currentUser.name);
   const [description, setDescription] = useState(currentUser.about);
   const [formValidator, setFormValidator] = useState("");
-  const [ErrorMsg, setErrorMsg] = useState({
+  const [errorMsg, setErrorMsg] = useState({
     name: "",
     job: "",
   });
   const [buttonDisabled, setbuttonDisabled] = useState(true);
+  const [buttonStatus, setButtonStatus] = useState(false);
 
   useEffect(() => {
     const formValidator = new FormValidator({
@@ -51,9 +52,15 @@ export default function EditProfile() {
     formValidator.enableValidation(inputElement);
   }
 
+  function handleButtonSavingState() {
+    setButtonStatus(!buttonStatus);
+  }
+
   function handleSubmit(evt) {
     evt.preventDefault();
+    handleButtonSavingState();
     onUpdateUser({ name, about: description });
+    handleButtonSavingState();
   }
 
   return (
@@ -79,10 +86,10 @@ export default function EditProfile() {
           />
           <span
             className={`popup__error ${
-              ErrorMsg.name && "popup__error_visible"
+              errorMsg.name && "popup__error_visible"
             }`}
           >
-            {ErrorMsg.name}
+            {errorMsg.name}
           </span>
         </label>
         <label className="popup__form-field">
@@ -99,17 +106,21 @@ export default function EditProfile() {
             required
           />
           <span
-            className={`popup__error ${ErrorMsg.job && "popup__error_visible"}`}
+            className={`popup__error ${errorMsg.job && "popup__error_visible"}`}
           >
-            {ErrorMsg.job}
+            {errorMsg.job}
           </span>
         </label>
         <button
           type="submit"
-          className="button button_popup-submit"
+          className={`button button_popup-submit${
+            buttonDisabled && buttonStatus
+              ? " button_popup-submit_disabled"
+              : ""
+          }`}
           disabled={buttonDisabled}
         >
-          Salvar
+          {`${!buttonStatus ? "Salvar" : "Salvando..."}`}
         </button>
       </fieldset>
     </form>

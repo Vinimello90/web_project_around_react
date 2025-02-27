@@ -1,10 +1,11 @@
-import { useEffect } from "react";
-import FormValidator from "../../../../utils/FormValidator";
+import { useEffect, useState } from "react";
 
 export default function Popup(props) {
+  const [displayPopup, setDisplayPopup] = useState("");
   const { title, children } = props;
 
   useEffect(() => {
+    setDisplayPopup(true);
     function handleEsc(evt) {
       if (evt.key === "Escape") {
         props.onClose();
@@ -17,13 +18,16 @@ export default function Popup(props) {
   }, []);
 
   function handleClickOutside(evt) {
-    if (evt.target.className === "popup") {
+    if (evt.target.classList.contains("popup")) {
       props.onClose();
     }
   }
 
   return (
-    <div onClick={handleClickOutside} className="popup">
+    <div
+      onClick={handleClickOutside}
+      className={`popup${displayPopup && " popup_opened"}`}
+    >
       <div
         className={`popup__container ${!title ? "popup__container_image" : ""}`}
       >
