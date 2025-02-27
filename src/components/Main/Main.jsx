@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext } from "react";
 import Popup from "./components/Popup/Popup";
 import NewCard from "./components/Popup/components/NewCard/NewCard";
 import EditProfile from "./components/Popup/components/EditProfile/EditProfile";
@@ -69,17 +69,15 @@ export default function Main(props) {
       </section>
       <section className="gallery">
         <ul className="gallery__cards">
-          {cards.map((card) => {
-            return (
-              <Card
-                key={card._id}
-                card={card}
-                onOpenPopup={onOpenPopup}
-                onCardLike={onCardLike}
-                onCardDelete={onCardDelete}
-              />
-            );
-          })}
+          {cards.map((card) => (
+            <Card
+              key={card._id}
+              card={card}
+              onOpenPopup={onOpenPopup}
+              onCardLike={onCardLike}
+              onCardDelete={onCardDelete}
+            />
+          ))}
           {cards.length === 0 && <NoCards />}
         </ul>
       </section>

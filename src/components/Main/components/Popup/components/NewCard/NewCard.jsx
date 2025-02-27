@@ -15,6 +15,11 @@ export default function NewCard(props) {
 
   useEffect(() => {
     const formValidator = new FormValidator({
+      classObj: {
+        formSelector: ".popup__form",
+        fieldsetSelector: ".popup__fieldset",
+        inputSelector: ".input",
+      },
       handleFormErrorState: ({ name, errorMessage }) => {
         setErrorMsg((prev) => ({
           ...prev,
@@ -23,15 +28,6 @@ export default function NewCard(props) {
       },
       handleFormButtonState: (isDisabled) => {
         setbuttonDisabled(isDisabled);
-      },
-      classObj: {
-        formSelector: ".popup__form",
-        fieldsetSelector: ".popup__fieldset",
-        inputSelector: ".input",
-        submitButtonSelector: ".button_popup-submit",
-        inactiveButtonClass: "button_popup-submit_disabled",
-        inputErrorClass: "input__popup_type_error",
-        errorClass: "popup__error_visible",
       },
     });
     setFormValidator(formValidator);
@@ -80,7 +76,7 @@ export default function NewCard(props) {
           />
           <span
             className={`popup__error${
-              errorMsg.title && " popup__error_visible"
+              errorMsg.title ? " popup__error_visible" : ""
             }`}
           >
             {errorMsg.title}
@@ -99,7 +95,7 @@ export default function NewCard(props) {
           />
           <span
             className={`popup__error${
-              errorMsg.link && " popup__error_visible"
+              errorMsg.link ? " popup__error_visible" : ""
             }`}
           >
             {errorMsg.link}

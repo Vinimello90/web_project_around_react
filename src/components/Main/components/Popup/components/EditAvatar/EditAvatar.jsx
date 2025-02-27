@@ -15,6 +15,11 @@ export default function EditAvatar() {
 
   useEffect(() => {
     const formValidator = new FormValidator({
+      classObj: {
+        formSelector: ".popup__form",
+        fieldsetSelector: ".popup__fieldset",
+        inputSelector: ".input",
+      },
       handleFormErrorState: ({ name, errorMessage }) => {
         setErrorMsg((prev) => ({
           ...prev,
@@ -23,15 +28,6 @@ export default function EditAvatar() {
       },
       handleFormButtonState: (isDisabled) => {
         setbuttonDisabled(isDisabled);
-      },
-      classObj: {
-        formSelector: ".popup__form",
-        fieldsetSelector: ".popup__fieldset",
-        inputSelector: ".input",
-        submitButtonSelector: ".button_popup-submit",
-        inactiveButtonClass: "button_popup-submit_disabled",
-        inputErrorClass: "input__popup_type_error",
-        errorClass: "popup__error_visible",
       },
     });
     setFormValidator(formValidator);
@@ -45,6 +41,7 @@ export default function EditAvatar() {
 
   function handleButtonSavingState() {
     setButtonStatus(!buttonStatus);
+    setbuttonDisabled(!buttonDisabled);
   }
 
   function handleSubmit(evt) {
@@ -75,8 +72,8 @@ export default function EditAvatar() {
             required
           />
           <span
-            className={`popup__error ${
-              errorMsg.link && "popup__error_visible"
+            className={`popup__error${
+              errorMsg.link ? " popup__error_visible" : ""
             }`}
           >
             {errorMsg.link}

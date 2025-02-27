@@ -120,4 +120,8 @@
     color: white;
     margin: 10px 0 0;
   }
+
+  .popup__error {
+    font-size: 10.5px;
+  }
 }
