@@ -8,7 +8,7 @@ export default class FormValidator {
     this._handleFormButtonState = handleFormButtonState;
   }
 
-  // Passa os dados da validação para exibir a mensagem de erro.
+  // Passa os dados da validação para alterar o estado e exibir a mensagem de erro.
   _showInputError = (inputName, errorMessage) => {
     const inputValidityInfo = {
       name: inputName,
@@ -17,7 +17,7 @@ export default class FormValidator {
     this._handleFormErrorState(inputValidityInfo);
   };
 
-  // Passa os dados da validação para remover a mensagem de erro.
+  // Passa os dados da validação para alterar o estado e esconder a mensagem de erro.
   _hideInputError = (inputName) => {
     const inputValidityInfo = {
       name: inputName,
@@ -35,7 +35,7 @@ export default class FormValidator {
     }
   };
 
-  // passa o valor da validação pra definir o estado do botão
+  // passa o valor da validação pra alterar o estado do botão.
   _toggleButtonState = (hasInvalidInput) => {
     this._handleFormButtonState(hasInvalidInput);
   };
