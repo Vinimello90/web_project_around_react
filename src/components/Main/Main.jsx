@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 import Popup from "./components/Popup/Popup";
 import NewCard from "./components/Popup/components/NewCard/NewCard";
 import EditProfile from "./components/Popup/components/EditProfile/EditProfile";
@@ -24,7 +24,7 @@ export default function Main(props) {
   };
   const editProfilePopup = {
     title: "Editar perfil",
-    children: <EditProfile userInfo={currentUserInfo} />,
+    children: <EditProfile />,
   };
   const newCardPopup = {
     title: "Novo local",
