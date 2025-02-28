@@ -58,7 +58,7 @@ As `media queries` foram implementadas para ajustar o layout de acordo com os po
 
 No `React` o código do site foi reimplatado no formato `JSX` separados em componentes para serem montados e renderizados à página.
 
-- Foi aplicado o evento `onClick()` nos botões para manipular o estado das popups, utilizando uma função com o `useState()`. Assim, ao clicar para abrir a popup, o elemento é montado e renderizado na página, e ao clicar para fechar os elementos são desmontados e removidos. As informações e o componente de cada popup foram passados através das `props` do componente, permitindo abrir a popup para edição do avatar, perfil e adição de novos cards e através do `onChange()`, `useRef()` e `onSubmit()` foi possivel passar os valores dos inputs para os estados e renderizar na página.
+- Foi aplicado o evento `onClick()` nos botões para manipular o estado das popups, utilizando uma função com o `useState()`. Assim, ao clicar para abrir a popup, o elemento é montado e renderizado na página, com o `useEffect()`, foi adicionado o ouvinte de evento `addEventListener()` com o tipo `keydown` para fechar as popups com ao pressionar a tecla "esc". Ao fechar, os elementos são desmontados o ouvinte de evento é removido com `removeEventListener()` . As informações e o componente de cada popup foram passados através das `props` do componente, permitindo abrir a popup para edição do avatar, perfil do usuário e adição de novos cards. Além disso, com o uso de `onChange()`, `useRef()` e `onSubmit()` foi possivel passar os valores dos inputs para os estados e renderizá-los na página.
 
 <img src="./src/images/popup_avatar.png" alt="" width="49.4%"> <img src="./src/images/profile-edit.png" alt="" width="49.2%">
 
@@ -70,15 +70,15 @@ No `React` o código do site foi reimplatado no formato `JSX` separados em compo
 <p align="center"><img src="./src/images/popup_image.png" alt="" width="100%"></p>
 <br>
 
-- Foi usada uma classe para instanciar no useEffect() para validar os formulários alterando estado para manipular e aprimorar a UX do popup, desabilitando o botão de `submit`, sublinhando de vermelho o `input` inválido e exibindo uma mensagem abaixo do `input` explicando o que está invalidando o formulário para que o botão de `submit` seja habilitado.
+- Foi instanciada uma classe no `useEffect()` para validar os formulários, alterando estado para manipular e aprimorar a UX do popup. A classe desabilita o botão de `submit`, sublinhando de vermelho o `input` inválido e exibe uma mensagem abaixo do `input`, explicando o que está invalidando o formulário. Dessa forma, o botão de `submit` só é habilitado quando o formulário for validado corretamente.
 
 <img src="./src/images/popup_validation.png" alt="" width="100%">
 
 ### API
 
-Foi criado uma classe para usar a API que permite interagir com dados externos, utilizando o método `fetch` atráves dos métodos de solicitações `GET`, `POST`, `PATCH`, `PUT` e `DELETE` para solicitar os dados do usuário ou dos cartões, adiconar cartões, alterar ou remover do servidor que necessita de um `token` para autorizar a solicitação. E foram adicionado funções e métodos para interagir com o usuário indicando quando alguma solicitação está sendo processada.
+Foi criado uma classe para usar a API que permite interagir com dados externos, utilizando o método `fetch` atráves dos métodos de solicitações `GET`, `POST`, `PATCH`, `PUT` e `DELETE` para solicitar os dados do usuário ou dos cartões, adiconar cartões, alterar ou remover do servidor que necessita de um `token` para autorizar a solicitação.
 
-- Foi adicionado uma função para manipular e alterar o estado do botão de salvar indicando que está salvando e ao finalizar o processo vai voltar o texto padrão do botão e fechar a popup.
+- Foi adicionada uma função para manipular e alterar o estado do botão de salvar, indicando quando alguma solicitação está sendo processada. Ao finalizar o processo, o texto do botão volta ao padrão e a popup é fechada.
 
 <img src="./src/images/saving_button.png" alt="" width="100%">
 
@@ -87,3 +87,7 @@ Foi criado uma classe para usar a API que permite interagir com dados externos, 
 - Foi adicionado uma nova popup para fazer a confirmação da remoção do cartão, antes de enviar a solicitação de remoção pela API e remover da página.
 
 <img src="./src/images/confirmation.png" alt="" width="100%">
+
+## Tecnologias
+
+- Adicionar um sistema de login e identificar, através do `ID` do usuário, se o card foi adicionado por ele. Caso tenha sido exibir o botão de excluir o card.
