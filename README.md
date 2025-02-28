@@ -76,7 +76,7 @@ No `React` o código do site foi reimplatado no formato `JSX` separados em compo
 
 ### API
 
-Foi criado uma classe para usar a API que permite interagir com dados externos, utilizando o método `fetch` atráves dos métodos de solicitações `GET`, `POST`, `PATCH`, `PUT` e `DELETE` para solicitar os dados do usuário ou dos cartões, adiconar cartões, alterar ou remover do servidor que necessita de um `token` para autorizar a solicitação.
+Foi criado uma classe para interagir com a API, permitindo a manipulação e persistência de dados externos. Utilizando o método `fetch`, a classe faz solicitações `GET`, `POST`, `PATCH`, `PUT` e `DELETE` para obter dados do usuário ou dos cartões, adicionar cartões, alterar ou remover dados do servidor, que requer um `token` para autorizar a solicitação.
 
 - Foi adicionada uma função para manipular e alterar o estado do botão de salvar, indicando quando alguma solicitação está sendo processada. Ao finalizar o processo, o texto do botão volta ao padrão e a popup é fechada.
 
@@ -88,6 +88,10 @@ Foi criado uma classe para usar a API que permite interagir com dados externos, 
 
 <img src="./src/images/confirmation.png" alt="" width="100%">
 
-## Tecnologias
+## Planos de melhoria do projeto
 
-- Adicionar um sistema de login e identificar, através do `ID` do usuário, se o card foi adicionado por ele. Caso tenha sido exibir o botão de excluir o card.
+- Adicionar um sistema de login e autorização.
+
+- Identificar, através do `ID` do usuário, se o card foi adicionado por ele.
+
+- Caso tenha sido, exibir o botão de excluir o card.
