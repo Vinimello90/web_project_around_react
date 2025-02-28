@@ -35,7 +35,7 @@ export default function EditProfile() {
         setbuttonDisabled(isDisabled);
       },
     });
-    // Armazena a instancia no estado para chamar os métodos.
+    // Armazena a instancia no estado para chamar os métodos nos manipuladores do onChange().
     setFormValidator(formValidator);
     // Ativa a validação do formulário somente uma vez no useEfect() ao montar o componente.
     formValidator.enableValidation();
@@ -80,7 +80,9 @@ export default function EditProfile() {
         <label className="popup__form-field">
           <input
             type="text"
-            className="input input_popup-name"
+            className={`input input_popup-name ${
+              errorMsg.name ? "input__popup_type_error" : "" // Alterna a classe para sublinhar o input com erro com base no estado do nome do input.
+            }`}
             placeholder="Nome"
             name="name"
             id="name"
@@ -102,7 +104,9 @@ export default function EditProfile() {
         <label className="popup__form-field">
           <input
             type="text"
-            className="input input_popup-job"
+            className={`input input_popup-job ${
+              errorMsg.job ? "input__popup_type_error" : "" // Alterna a classe para sublinhar o input com erro com base no estado do nome do input.
+            }`}
             placeholder="Sobre mim"
             name="job"
             id="job"

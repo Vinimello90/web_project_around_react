@@ -33,7 +33,7 @@ export default function NewCard(props) {
         setbuttonDisabled(isDisabled);
       },
     });
-    // Armazena a instancia no estado para chamar os métodos.
+    // Armazena a instancia no estado para chamar os métodos nos manipuladores do onChange().
     setFormValidator(formValidator);
     // Ativa a validação do formulário somente uma vez no useEfect() ao montar o componente.
     formValidator.enableValidation();
@@ -74,7 +74,9 @@ export default function NewCard(props) {
           <input
             onChange={handleTitleChange}
             type="text"
-            className="input input_popup-title"
+            className={`input input_popup-title ${
+              errorMsg.title ? "input__popup_type_error" : "" // Alterna a classe para sublinhar o input com erro com base no estado do nome do input.
+            }`}
             placeholder="Título"
             name="title"
             id="title"
@@ -96,7 +98,9 @@ export default function NewCard(props) {
           <input
             onChange={handleUrlChange}
             type="url"
-            className="input input_popup-link"
+            className={`input input_popup-link ${
+              errorMsg.link ? "input__popup_type_error" : "" // Alterna a classe para sublinhar o input com erro com base no estado do nome do input.
+            }`}
             placeholder="Link de imagem"
             name="link"
             id="link"

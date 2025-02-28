@@ -33,7 +33,7 @@ export default function EditAvatar() {
         setbuttonDisabled(isDisabled);
       },
     });
-    // Armazena a instancia no estado para chamar os métodos.
+    // Armazena a instancia no estado para chamar os métodos nos manipuladores do onChange().
     setFormValidator(formValidator);
     // Ativa a validação do formulário somente uma vez no useEfect() ao montar o componente.
     formValidator.enableValidation();
@@ -73,7 +73,9 @@ export default function EditAvatar() {
             onChange={handleInputValidation}
             ref={urlInputRef}
             type="url"
-            className="input input_popup-avatar"
+            className={`input input_popup-avatar ${
+              errorMsg.link ? "input__popup_type_error" : "" // Alterna a classe para sublinhar o input com erro com base no estado do nome do input.
+            }`}
             placeholder="Link de imagem"
             name="link"
             id="link"
