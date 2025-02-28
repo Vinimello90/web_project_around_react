@@ -13,7 +13,7 @@ Este é um projeto da Around the U.S. - EUA Afora, destinado ao usuário para ad
 - Pseudo-classe
 - Unidades de medida relativas
 - Media queries
-- React
+- React JS
 - API
 
 ## Descrição das Tecnologias e Técnicas Utilizadas
@@ -54,11 +54,11 @@ As `media queries` foram implementadas para ajustar o layout de acordo com os po
 
 <p align="center"><img src="./src/images/screen-size.png" alt="" width="90%"></p>
 
-### React
+### React JS
 
 No `React` o código do site foi reimplatado no formato `JSX` separados em componentes para serem montados e renderizados à página.
 
-- Foi aplicado o evento `onClick()` nos botões para manipular o estado das popups, utilizando uma função com o `useState()`. Assim, ao clicar para abrir a popup, o elemento é montado e renderizado na página, e ao clicar para fechar os elementos são desmontados e removidos. As informações e o componente de cada popup foram passados através das `props` do componente, permitindo abrir a popup para edição do avatar, perfil e adição de novos cards e através do `onChange()`, `useRef()` e `onSubmit()` foi possivel passar os valores para os estados e renderizar na página.
+- Foi aplicado o evento `onClick()` nos botões para manipular o estado das popups, utilizando uma função com o `useState()`. Assim, ao clicar para abrir a popup, o elemento é montado e renderizado na página, e ao clicar para fechar os elementos são desmontados e removidos. As informações e o componente de cada popup foram passados através das `props` do componente, permitindo abrir a popup para edição do avatar, perfil e adição de novos cards e através do `onChange()`, `useRef()` e `onSubmit()` foi possivel passar os valores dos inputs para os estados e renderizar na página.
 
 <img src="./src/images/popup_avatar.png" alt="" width="49.4%"> <img src="./src/images/profile-edit.png" alt="" width="49.2%">
 
@@ -87,5 +87,3 @@ Foi criado uma classe para usar a API que permite interagir com dados externos, 
 - Foi adicionado uma nova popup para fazer a confirmação da remoção do cartão, antes de enviar a solicitação de remoção pela API e remover da página.
 
 <img src="./src/images/confirmation.png" alt="" width="100%">
-
-## Planos de melhoria do projeto
