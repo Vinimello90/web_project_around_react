@@ -19,7 +19,6 @@ export default function Popup(props) {
       // remove o event listener ao desmontar.
       window.removeEventListener("keydown", handleEsc);
     };
-    // Estava indicando um aviso de dependência aqui, mas não necessita dele realmente né? já que a função via props só vai desmontar a popup correto??
   }, [onClose]);
 
   // Manipula o clique no elemento de background da popup para fechar ao clicar fora da popup.
