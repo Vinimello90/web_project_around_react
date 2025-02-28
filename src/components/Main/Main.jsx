@@ -5,7 +5,7 @@ import EditProfile from "./components/Popup/components/EditProfile/EditProfile";
 import EditAvatar from "./components/Popup/components/EditAvatar/EditAvatar";
 import Card from "./components/Card/Card";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
-import NoCards from "./NoCards/NoCards";
+import NoCards from "./components/NoCards/NoCards";
 
 export default function Main(props) {
   const { currentUserInfo } = useContext(CurrentUserContext);
