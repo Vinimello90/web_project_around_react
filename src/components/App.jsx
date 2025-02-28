@@ -24,7 +24,6 @@ export default function App() {
     })();
   }, []);
 
-  //
   function handleOpenPopup(popup) {
     setPopup(popup);
   }
