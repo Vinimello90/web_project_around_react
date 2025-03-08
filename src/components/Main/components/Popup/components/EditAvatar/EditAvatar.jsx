@@ -69,7 +69,9 @@ export default function EditAvatar(props) {
           }
           disabled={buttonDisabled} // Desativa/Habilida o botão de submit com base no estado do botão.
         >
-          {buttonStatus ? "Salvar" : "Salvando..."}
+          {
+            !buttonStatus ? "Salvar" : "Salvando..." // Alterna o o texto do botão com base no estado do botão durante o processo de salvamento.
+          }
         </button>
       </fieldset>
     </form>
