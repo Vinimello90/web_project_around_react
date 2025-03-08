@@ -1,43 +1,16 @@
-import { useState, useEffect } from "react";
-import FormValidator from "../../../../../../utils/FormValidator";
+import { useState } from "react";
 
 export default function NewCard(props) {
-  const { onAddPlaceSubmit } = props;
+  const {
+    formValidator,
+    errorMsg,
+    buttonDisabled,
+    buttonStatus,
+    onButtonSavingState,
+    onAddPlaceSubmit,
+  } = props;
   const [title, setTitle] = useState("");
   const [url, setUrl] = useState("");
-  const [formValidator, setFormValidator] = useState("");
-  const [errorMsg, setErrorMsg] = useState({
-    title: "",
-    link: "",
-  });
-  const [buttonDisabled, setbuttonDisabled] = useState(true);
-  const [buttonStatus, setButtonStatus] = useState(false);
-
-  useEffect(() => {
-    // Instancia a classe FormValidator somente uma vez no useEfect() ao montar o componente.
-    const formValidator = new FormValidator({
-      classObj: {
-        formSelector: ".popup__form",
-        fieldsetSelector: ".popup__fieldset",
-        inputSelector: ".input",
-      },
-      // Atualiza o estado da mensagem de erro de forma dinamica de acordo com o nome do input.
-      handleFormErrorState: ({ name, errorMessage }) => {
-        setErrorMsg((prev) => ({
-          ...prev,
-          [name]: errorMessage,
-        }));
-      },
-      // Atualiza o estado do botão habiltando/desabilitando de acordo com a validação do formulário.
-      handleFormButtonState: (isDisabled) => {
-        setbuttonDisabled(isDisabled);
-      },
-    });
-    // Armazena a instancia no estado para chamar os métodos nos manipuladores do onChange().
-    setFormValidator(formValidator);
-    // Ativa a validação do formulário somente uma vez no useEfect() ao montar o componente.
-    formValidator.enableValidation();
-  }, []);
 
   function handleTitleChange(evt) {
     const inputElement = evt.target;
@@ -54,17 +27,13 @@ export default function NewCard(props) {
 
   // Alterna o estado do botão de submit para indicar o processo de salvamento,
   // bloqueando e alterando o texto de acordo com o estado verdadeiro e falso.
-  function handleButtonSavingState() {
-    setButtonStatus(!buttonStatus);
-    setbuttonDisabled(!buttonDisabled);
-  }
 
   function handleSubmit(evt) {
     evt.preventDefault();
-    // Manipula os estados do botão para indicar que o processo de salvamento esta em andamento.
-    handleButtonSavingState();
+    // Chama a função que altera o estado para alterar o botão de submit, desativando e indicando processo de solicitação da API
+    onButtonSavingState();
     onAddPlaceSubmit({ name: title, link: url }); // Envia os da para atualizar API e o estado dos cards
-    handleButtonSavingState();
+    onButtonSavingState(); // habilita e volta o texto padrão do botão
   }
 
   return (

@@ -1,45 +1,18 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { CurrentUserContext } from "../../../../../../contexts/CurrentUserContext";
-import FormValidator from "../../../../../../utils/FormValidator";
 
-export default function EditProfile() {
+export default function EditProfile(props) {
+  const {
+    formValidator,
+    errorMsg,
+    buttonDisabled,
+    buttonStatus,
+    onButtonSavingState,
+  } = props;
   const { currentUserInfo: currentUser, onUpdateUser } =
     useContext(CurrentUserContext);
   const [name, setName] = useState(currentUser.name);
   const [description, setDescription] = useState(currentUser.about);
-  const [formValidator, setFormValidator] = useState("");
-  const [errorMsg, setErrorMsg] = useState({
-    name: "",
-    job: "",
-  });
-  const [buttonDisabled, setbuttonDisabled] = useState(true);
-  const [buttonStatus, setButtonStatus] = useState(false);
-
-  useEffect(() => {
-    // Instancia a classe FormValidator somente uma vez no useEfect() ao montar o componente.
-    const formValidator = new FormValidator({
-      classObj: {
-        formSelector: ".popup__form",
-        fieldsetSelector: ".popup__fieldset",
-        inputSelector: ".input",
-      },
-      // Atualiza o estado da mensagem de erro de forma dinamica de acordo com o nome do input.
-      handleFormErrorState: ({ name, errorMessage }) => {
-        setErrorMsg((prev) => ({
-          ...prev,
-          [name]: errorMessage,
-        }));
-      },
-      // Atualiza o estado do botão habiltando/desabilitando de acordo com a validação do formulário.
-      handleFormButtonState: (isDisabled) => {
-        setbuttonDisabled(isDisabled);
-      },
-    });
-    // Armazena a instancia no estado para chamar os métodos nos manipuladores do onChange().
-    setFormValidator(formValidator);
-    // Ativa a validação do formulário somente uma vez no useEfect() ao montar o componente.
-    formValidator.enableValidation();
-  }, []);
 
   function handleNameChange(evt) {
     const inputElement = evt.target;
@@ -54,19 +27,12 @@ export default function EditProfile() {
     formValidator.enableValidation(inputElement);
   }
 
-  // Alterna o estado do botão de submit para indicar o processo de salvamento,
-  // bloqueando e alterando o texto de acordo com o estado verdadeiro e falso.
-  function handleButtonSavingState() {
-    setButtonStatus(!buttonStatus);
-    setbuttonDisabled(!buttonDisabled);
-  }
-
   function handleSubmit(evt) {
     evt.preventDefault();
-    // Manipula os estados do botão para indicar que o processo de salvamento esta em andamento.
-    handleButtonSavingState();
+    // Chama a função que altera o estado para alterar o botão de submit, desativando e indicando processo de solicitação da API
+    onButtonSavingState();
     onUpdateUser({ name, about: description });
-    handleButtonSavingState();
+    onButtonSavingState(); // habilita e volta o texto padrão do botão
   }
 
   return (

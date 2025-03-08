@@ -1,43 +1,16 @@
-import { useContext, useRef, useState, useEffect } from "react";
+import { useContext, useRef } from "react";
 import { CurrentUserContext } from "../../../../../../contexts/CurrentUserContext";
-import FormValidator from "../../../../../../utils/FormValidator";
 
-export default function EditAvatar() {
+export default function EditAvatar(props) {
+  const {
+    formValidator,
+    errorMsg,
+    buttonDisabled,
+    buttonStatus,
+    onButtonSavingState,
+  } = props;
   const { currentUserInfo, onUpdateAvatar } = useContext(CurrentUserContext);
   const urlInputRef = useRef();
-
-  const [formValidator, setFormValidator] = useState("");
-  const [errorMsg, setErrorMsg] = useState({
-    link: "",
-  });
-  const [buttonDisabled, setbuttonDisabled] = useState(true);
-  const [buttonStatus, setButtonStatus] = useState(false);
-
-  useEffect(() => {
-    // Instancia a classe FormValidator somente uma vez no useEfect() ao montar o componente.
-    const formValidator = new FormValidator({
-      classObj: {
-        formSelector: ".popup__form",
-        fieldsetSelector: ".popup__fieldset",
-        inputSelector: ".input",
-      },
-      handleFormErrorState: ({ name, errorMessage }) => {
-        // Atualiza o estado da mensagem de erro de forma dinamica de acordo com o nome do input.
-        setErrorMsg((prev) => ({
-          ...prev,
-          [name]: errorMessage,
-        }));
-      },
-      // Atualiza o estado do botão habiltando/desabilitando de acordo com a validação do formulário.
-      handleFormButtonState: (isDisabled) => {
-        setbuttonDisabled(isDisabled);
-      },
-    });
-    // Armazena a instancia no estado para chamar os métodos nos manipuladores do onChange().
-    setFormValidator(formValidator);
-    // Ativa a validação do formulário somente uma vez no useEfect() ao montar o componente.
-    formValidator.enableValidation();
-  }, []);
 
   function handleInputValidation(evt) {
     const inputElement = evt.target;
@@ -45,19 +18,12 @@ export default function EditAvatar() {
     formValidator.enableValidation(inputElement);
   }
 
-  // Alterna o estado do botão de submit para indicar o processo de salvamento,
-  // bloqueando e alterando o texto de acordo com o estado verdadeiro e falso.
-  function handleButtonSavingState() {
-    setButtonStatus(!buttonStatus);
-    setbuttonDisabled(!buttonDisabled);
-  }
-
   function handleSubmit(evt) {
     evt.preventDefault();
-    // Manipula os estados do botão para indicar que o processo de salvamento esta em andamento.
-    handleButtonSavingState();
+    // Chama a função que altera o estado para alterar o botão de submit, desativando e indicando processo de solicitação da API
+    onButtonSavingState();
     onUpdateAvatar({ avatar: urlInputRef.current.value });
-    handleButtonSavingState();
+    onButtonSavingState(); // habilita e volta o texto padrão do botão
   }
 
   return (
@@ -103,9 +69,7 @@ export default function EditAvatar() {
           }
           disabled={buttonDisabled} // Desativa/Habilida o botão de submit com base no estado do botão.
         >
-          {
-            !buttonStatus ? "Salvar" : "Salvando..." // Alterna o o texto do botão com base no estado do botão durante o processo de salvamento.
-          }
+          {buttonStatus ? "Salvar" : "Salvando..."}
         </button>
       </fieldset>
     </form>
