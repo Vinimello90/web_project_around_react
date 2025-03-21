@@ -1,0 +1,40 @@
+.header {
+  max-width: 880px;
+  width: 100%;
+  padding: 45px 0 41px;
+  margin: 0 auto;
+  border-bottom: #545454 solid 1px;
+}
+
+.header__logo {
+  width: 173px;
+}
+
+@media screen and (max-width: 1024px) {
+  .header {
+    width: 92vw;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .header {
+    padding: 28px 0 32px 0;
+    max-width: 94vw;
+  }
+
+  .header__logo {
+    width: 126px;
+  }
+}
+
+@media screen and (max-width: 590px) {
+  .header {
+    padding: 28px 0 32px;
+    max-width: none;
+    width: 100%;
+  }
+
+  .header__logo {
+    margin-left: 27px;
+  }
+}
