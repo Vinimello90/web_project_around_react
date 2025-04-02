@@ -2,7 +2,7 @@
 
 O projeto **Around the U.S. - EUA Afora** foi desenvolvido para permitir que o usuário adicione, remova ou curta fotos. Seu layout é responsivo, adaptando-se a diferentes tamanhos de tela por meio de **unidades de medida relativas** e **media queries**, ajustando o design conforme os pontos de interrupção, garantindo que o layout seja consistente e não quebre. O código foi reimplantado utilizando a tecnologia **React**, com a estrutura separada em componentes **JSX (JavaScript XML)**.
 
-![Captura de tela do projeto EUA Afora](./src/images/screenshot_fullpage.png)
+<img src="./src/images/screenshot_fullpage.png" alt="Captura de tela do projeto EUA Afora" />
 
 **Veja o projeto em funcionamento clicando [aqui](https://vinimello90.github.io/web_project_around_react).**
 
@@ -40,13 +40,13 @@ A propriedade `grid` foi usada para estruturar os cartões de fotos na seção *
 
 - Seção "Gallery"
 
-  ![Captura de tela da galeria](./src/images/gallery.png)
+  <img src="./src/images/gallery.png" alt="Captura de tela da galeria" />
 
 ### Pseudo-classes
 
 As **pseudo-classes** `:hover` e `:active` foram aplicadas para melhorar a interatividade do site. A primeira altera o estilo dos elementos quando o cursor passa sobre eles, enquanto a segunda é ativada quando o elemento é clicado.
 
-<p align=center>
+<p align="center">
 <img src="./src/images/pseudo-classes.png" alt="Captura de tela mostrando pseudo-classes">
 </p>
 
@@ -58,7 +58,7 @@ As **media queries** foram configuradas para garantir que o layout se ajuste cor
 - 768-1280px (785px)
 - 1280px ou superior
 
-  ![Captura de tela de diferentes resoluções de tela](./src/images/screen-size.png)
+  <img src="./src/images/screen-size.png" alt="Captura de tela de diferentes resoluções de tela" />
 
 ### React JS
 
@@ -76,7 +76,7 @@ No **React**, o código foi reestruturado usando o formato **JSX** e separado em
 
 - Dentro do `useEffect()`, instanciou-se uma classe responsável por validar os formulários, manipulando o estado para melhorar a **UX** das popups. A classe desabilita o botão de **submit** quando o formulário contém entradas inválidas, sublinhando de vermelho o **input** inválido e exibindo uma mensagem explicativa abaixo do campo. O botão **submit** só é habilitado quando o formulário é validado corretamente.
 
-  ![Captura de tela da validação de formulário](./src/images/popup_validation.png)
+  <img src="./src/images/popup_validation.png" alt="Captura de tela da validação de formulário" />
 
 ### API
 
@@ -86,11 +86,11 @@ Funções adicionais foram implementadas para melhorar a experiência do usuári
 
 - Alterar o texto do botão de **salvar** indicando o processo de salvamento e restaurá-lo ao seu estado original após a conclusão.
 
-  ![Captura de tela do botão de salvar](./src/images/saving_button.png)
+  <img src="./src/images/saving_button.png" alt="Captura de tela do botão de salvar" />
 
 - Uma popup de confirmação foi adicionada para a remoção de cartões, solicitando confirmação antes de enviar a solicitação à API.
 
-  ![Captura de tela da confirmação de remoção](./src/images/confirmation.png)
+  <img src="./src/images/confirmation.png" alt="Captura de tela da confirmação de remoção" />
 
 ## Planos de melhoria do projeto
 
