@@ -32,11 +32,11 @@ A **metodologia BEM** foi adotada para melhorar a manutenção e a escalabilidad
 
 ### Flexbox
 
-O **Flexbox** foi utilizado em conjunto com **unidades de medida relativas** para organizar o layout e otimizar a responsividade da página, garantindo uma boa experiência em diferentes dispositivos.
+O `flexbox` foi utilizado em conjunto com **unidades de medida relativas** para organizar o layout e otimizar a responsividade da página, garantindo uma boa experiência em diferentes dispositivos.
 
 ### Grid e Text-overflow
 
-A propriedade **Grid** foi usada para estruturar os cartões de fotos na seção **Gallery**, criando um layout bem distribuído. A propriedade **text-overflow: ellipsis** foi aplicada junto com **overflow: hidden** e **white-space: nowrap** para truncar textos que ultrapassam o limite do layout.
+A propriedade `grid` foi usada para estruturar os cartões de fotos na seção **Gallery**, criando um layout bem distribuído. A propriedade `text-overflow: ellipsis` foi aplicada junto com `overflow: hidden` e `white-space: nowrap` para truncar textos que ultrapassam o limite do layout.
 
 - Seção "Gallery"
 
