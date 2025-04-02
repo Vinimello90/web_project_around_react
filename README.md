@@ -46,7 +46,9 @@ A propriedade `grid` foi usada para estruturar os cartões de fotos na seção *
 
 As **pseudo-classes** `:hover` e `:active` foram aplicadas para melhorar a interatividade do site. A primeira altera o estilo dos elementos quando o cursor passa sobre eles, enquanto a segunda é ativada quando o elemento é clicado.
 
-<p align=center> ![Captura de tela mostrando pseudo-classes](./src/images/pseudo-classes.png) </p>
+<p align=center> 
+  ![Captura de tela mostrando pseudo-classes](./src/images/pseudo-classes.png) 
+</p>
 
 ### Media Queries
 
