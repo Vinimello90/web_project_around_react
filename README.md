@@ -6,7 +6,7 @@ O projeto **Around the U.S. - EUA Afora** foi desenvolvido para permitir que o u
 
 **Veja o projeto em funcionamento clicando [aqui](https://vinimello90.github.io/web_project_around_react).**
 
-## Tecnologias e Metodologias
+## Tecnologias e Métodos
 
 - HTML5 semântico
 - Metodologia BEM
