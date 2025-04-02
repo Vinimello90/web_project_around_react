@@ -1,6 +1,10 @@
 # Around the U.S. - EUA Afora
 
-Este é um projeto da Around the U.S. - EUA Afora, destinado ao usuário para adicionar, remover ou curtir fotos. O layout é responsivo, adaptando-se a diferentes tamanhos de tela, utilizando `unidades de medida relativas` e `media queries` para ajustar o design conforme os pontos de interrupção, garantindo que o layout permaneça intacto e não quebre. Foi feito uma reimplantação do código a tecnologia do `REACT` e separado em componentes `JSX (JavaScript XML)`.
+O projeto **Around the U.S. - EUA Afora** foi desenvolvido para permitir que o usuário adicione, remova ou curta fotos. Seu layout é responsivo, adaptando-se a diferentes tamanhos de tela por meio de **unidades de medida relativas** e **media queries**, ajustando o design conforme os pontos de interrupção, garantindo que o layout seja consistente e não quebre. O código foi reimplantado utilizando a tecnologia **React**, com a estrutura separada em componentes **JSX (JavaScript XML)**.
+
+![Captura de tela do projeto EUA Afora](./src/images/screenshot_fullpage.png)
+
+**Veja o projeto em funcionamento clicando [aqui](https://vinimello90.github.io/web_project_around_react).**
 
 ## Tecnologias
 
@@ -18,80 +22,78 @@ Este é um projeto da Around the U.S. - EUA Afora, destinado ao usuário para ad
 
 ## Descrição das Tecnologias e Técnicas Utilizadas
 
-### HTML semântico
+### HTML Semântico
 
-O `HTML semântico` foi aplicado para tornar o código mais compreensível.
+O **HTML semântico** foi aplicado para tornar o código mais legível e acessível, melhorando a compreensão e a estruturação do conteúdo.
 
 ### Metodologia BEM
 
-A `metodologia BEM` facilita a manutenção e a compreensão do código.
+A **metodologia BEM** foi adotada para melhorar a manutenção e a escalabilidade do código, tornando a estrutura de classes mais clara e intuitiva.
 
 ### Flexbox
 
-O `Flexbox` foi utilizado juntamente com `unidades de medida relativas` para organizar e otimizar a responsividade do layout.
+O **Flexbox** foi utilizado em conjunto com **unidades de medida relativas** para organizar o layout e otimizar a responsividade da página, garantindo uma boa experiência em diferentes dispositivos.
 
-### Grid e text-overflow
+### Grid e Text-overflow
 
-O `Grid` foi utilizado nos cartões das fotos da seção "gallery" para criar um layout mais organizado e melhor distribuído. A propriedade `text-overflow:ellipsis` foi aplicada em conjunto com `overflow:hidden` e `white-space: nowrap` para reduzir os textos que excedem o layout.
+A propriedade **Grid** foi usada para estruturar os cartões de fotos na seção **Gallery**, criando um layout bem distribuído. A propriedade **text-overflow: ellipsis** foi aplicada junto com **overflow: hidden** e **white-space: nowrap** para truncar textos que ultrapassam o limite do layout.
 
 - Seção "Gallery"
 
-<img src="./src/images/gallery.png" alt="" width="100%">
+  ![Captura de tela da galeria](./src/images/gallery.png)
 
-### Pseudo-classe
+### Pseudo-classes
 
-Foi aplicada a pseudo-classe `:hover` para mudar o estilo na parte interativa quando o usuário passar o cursor sobre o elemento, e a pseudo-classe `:active` quando o elemento for clicado.
+As **pseudo-classes** `:hover` e `:active` foram aplicadas para melhorar a interatividade do site. A primeira altera o estilo dos elementos quando o cursor passa sobre eles, enquanto a segunda é ativada quando o elemento é clicado.
 
-<p align="center"><img src="./src/images/pseudo-classes.png" alt="" width="60%"></p>
+![Captura de tela mostrando pseudo-classes](./src/images/pseudo-classes.png)
 
 ### Media Queries
 
-As `media queries` foram implementadas para ajustar o layout de acordo com os pontos de interrupção e garantir a responsividade em várias resoluções de tela. Foram adicionados pontos de interrupção para assegurar a responsividade, definidos com base nos intervalos:
+As **media queries** foram configuradas para garantir que o layout se ajuste corretamente em diferentes resoluções de tela. Foram definidos os seguintes pontos de interrupção:
 
 - 320-768px (590px, 650px)
 - 768-1280px (785px)
-- 1280px e acima
+- 1280px ou superior
 
-<p align="center"><img src="./src/images/screen-size.png" alt="" width="90%"></p>
+  ![Captura de tela de diferentes resoluções de tela](./src/images/screen-size.png)
 
 ### React JS
 
-No `React` o código do site foi reimplatado no formato `JSX` separados em componentes para serem montados e renderizados à página.
+No **React**, o código foi reestruturado usando o formato **JSX** e separado em componentes que são montados e renderizados na página.
 
-- Foi aplicado o evento `onClick()` nos botões para manipular o estado das popups, utilizando uma função com o `useState()`. Assim, ao clicar para abrir a popup, o elemento é montado e renderizado na página. Com o `useEffect()`, foi adicionado o ouvinte de evento `addEventListener()` com o tipo `keydown` para fechar as popups ao pressionar a tecla "esc". Ao fechar, os elementos são desmontados o ouvinte de evento é removido com `removeEventListener()`. As informações de cada popup foram armazenadas no estado e passadas via `props` do componente, permitindo abrir a popup para edição do avatar, perfil do usuário e adição de novos cards. Além disso, com o uso de `onChange()`, `useRef()` e `onSubmit()` foi possível passar os valores dos inputs para os estados, renderizá-los na página e persistir as mudanças na API.
+- O evento `onClick()` foi aplicado no botão para manipular o estado das popups, utilizando a função `useState()`. Assim, ao clicar para abrir uma popup, o componente é montado e renderizado na página. Com o `useEffect()`, adiciona-se um ouvinte de evento `keydown` para fechar as popups ao pressionar a tecla "esc". Quando a popup é fechada, o ouvinte é removido com o método `removeEventListener()`. As informações de cada popup são armazenadas no estado e passadas via `props` para o componente, permitindo a abertura de popups para edição do avatar, perfil do usuário e adição de novos cartões. Além disso, com o uso de `onChange()`, `useRef()` e `onSubmit()`, é possível capturar os valores dos inputs, atualizá-los no estado, renderizá-los na página e persistir as mudanças na API.
 
-<img src="./src/images/popup_avatar.png" alt="" width="49.4%"> <img src="./src/images/profile-edit.png" alt="" width="49.2%">
+  <img src="./src/images/popup_avatar.png" alt="Captura de tela da edição do avatar" width="49.4%"> <img src="./src/images/profile-edit.png" alt="Captura de tela da edição do perfil" width="49.4%">
+  </p>
+  <p align="center"><img src="./src/images/add-card.png" alt="Captura de tela da adição de novo cartão" width="49.4%"></p>
 
-<p align="center"><img src="./src/images/add-card.png" alt="" width="49.4%"></p>
-<br>
+- Utiliza-se o método `map()` para iterar sobre os cartões para montar o componente de cada um. Os dados são passados como `props` para renderizar o cartão na seção "gallery" da página, além de incluir uma função para alterar o estado e abrir a popup da imagem ao clicar no cartão.
 
-- Foi utilizado o método `map()` para iterar sobre os cartões e montar o componente de cada um. Os dados foram passados como `props` do componente para renderizar na seção "gallery" da página, além de incluir a função que altera o estado para abrir a popup da imagem.
+  <p align="center"><img src="./src/images/popup_image.png" alt="Captura de tela da popup de imagem" width="100%"></p>
 
-<p align="center"><img src="./src/images/popup_image.png" alt="" width="100%"></p>
-<br>
+- Dentro do `useEffect()`, instanciou-se uma classe responsável por validar os formulários, manipulando o estado para melhorar a **UX** das popups. A classe desabilita o botão de **submit** quando o formulário contém entradas inválidas, sublinhando de vermelho o **input** inválido e exibindo uma mensagem explicativa abaixo do campo. O botão **submit** só é habilitado quando o formulário é validado corretamente.
 
-- Foi instanciada uma classe no `useEffect()` para validar os formulários, alterando estado para manipular e aprimorar a UX do popup. A classe desabilita o botão de `submit`, sublinhando de vermelho o `input` inválido e exibe uma mensagem abaixo do `input`, explicando o que está invalidando o formulário. Dessa forma, o botão de `submit` só é habilitado quando o formulário for validado corretamente.
-
-<img src="./src/images/popup_validation.png" alt="" width="100%">
+  ![Captura de tela da validação de formulário](./src/images/popup_validation.png)
 
 ### API
 
-Foi criado uma classe para interagir com a API, permitindo a manipulação e persistência de dados externos. Utilizando o método `fetch`, a classe faz solicitações `GET`, `POST`, `PATCH`, `PUT` e `DELETE` para obter dados do usuário ou dos cartões, adicionar cartões, alterar ou remover dados do servidor, que requer um `token` para autorizar a solicitação.
+Foi criada uma classe para interagir com a **API**, permitindo realizar solicitações **GET**, **POST**, **PATCH**, **PUT** e **DELETE** para obter, adicionar ou modificar dados no servidor. A autenticação é feita por meio de um **token**.
 
-- Foi adicionada uma função para manipular e alterar o estado do botão de salvar, indicando quando alguma solicitação está sendo processada. Ao finalizar o processo, o texto do botão volta ao padrão e a popup é fechada.
+Funções adicionais foram implementadas para melhorar a experiência do usuário, como:
 
-<img src="./src/images/saving_button.png" alt="" width="100%">
+- Alterar o texto do botão de **salvar** indicando o processo de salvamento e restaurá-lo ao seu estado original após a conclusão.
 
-<br>
+  ![Captura de tela do botão de salvar](./src/images/saving_button.png)
 
-- Foi adicionado uma nova popup para fazer a confirmação da remoção do cartão, antes de enviar a solicitação de remoção pela API e remover da página.
+- Uma popup de confirmação foi adicionada para a remoção de cartões, solicitando confirmação antes de enviar a solicitação à API.
 
-<img src="./src/images/confirmation.png" alt="" width="100%">
+  ![Captura de tela da confirmação de remoção](./src/images/confirmation.png)
 
 ## Planos de melhoria do projeto
 
 - Adicionar um sistema de login e autorização.
 
-- Identificar, através do `ID` do usuário, se o card foi adicionado por ele.
+- Identificar, através do **ID** do usuário, se o card foi adicionado por ele.
 
 - Caso tenha sido, exibir o botão de excluir o card.
